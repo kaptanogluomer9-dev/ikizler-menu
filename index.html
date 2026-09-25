@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>İkizler Restaurant - Menü</title>
+  <title>İkizler Restaurant - Dijital Menü</title>
   <style>
     :root {
-      --bg-color: #f7ebd9;
-      --card-bg: #ffffff;
-      --header-green: #0a4225;
-      --text-main: #0a4225;
-      --text-sub: #335c45;
-      --border-color: #0a4225;
+      --bg: #0d131a;
+      --card-bg: #16202c;
+      --accent: #10b981;
+      --accent-gold: #f59e0b;
+      --text: #f8fafc;
+      --text-sub: #94a3b8;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
     body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
+      background-color: var(--bg);
+      color: var(--text);
       display: flex;
       justify-content: center;
       padding: 16px 10px;
@@ -32,93 +32,100 @@
     .container {
       width: 100%;
       max-width: 480px;
-      border: 4px double var(--border-color);
-      padding: 12px;
-      background-color: #fbf4ea;
     }
 
     header {
       text-align: center;
-      padding: 16px 0 12px 0;
-      border-bottom: 2px solid var(--border-color);
+      padding: 20px 0;
+      border-bottom: 2px solid var(--accent);
       margin-bottom: 20px;
     }
 
     header h1 {
       font-size: 1.8rem;
-      font-weight: 900;
-      color: var(--header-green);
       letter-spacing: 1px;
+      color: #ffffff;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+
+    header h1 span {
+      color: var(--accent);
     }
 
     header p {
-      font-size: 0.85rem;
-      font-weight: 600;
-      color: var(--text-sub);
+      font-size: 0.9rem;
+      color: var(--accent-gold);
       margin-top: 4px;
+      font-weight: 500;
     }
 
     .category-title {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: #ffffff;
-      background-color: var(--header-green);
-      padding: 8px 12px;
-      margin: 20px 0 12px 0;
-      border-radius: 4px;
-      text-align: center;
-      letter-spacing: 0.5px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      margin: 24px 0 12px 4px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-left: 4px solid var(--accent);
+      padding-left: 8px;
     }
 
-    .menu-grid {
-      display: flex;
-      flex-direction: column;
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
       gap: 12px;
     }
 
     .item-card {
       background-color: var(--card-bg);
-      border: 1px solid rgba(10, 66, 37, 0.2);
-      border-radius: 8px;
-      padding: 12px;
+      border-radius: 12px;
+      overflow: hidden;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    }
+
+    .item-img {
+      width: 95px;
+      height: 95px;
+      object-fit: cover;
+      flex-shrink: 0;
     }
 
     .item-info {
-      display: flex;
-      flex-direction: column;
+      padding: 12px 14px;
+      flex-grow: 1;
     }
 
-    .item-name-tr {
+    .item-title {
       font-size: 1rem;
-      font-weight: 800;
-      color: var(--header-green);
-    }
-
-    .item-name-en {
-      font-size: 0.78rem;
       font-weight: 600;
-      color: #777;
-      margin-top: 2px;
+      color: var(--text);
     }
 
-    /* İçecekler Listesi */
-    .drink-list {
+    .item-sub {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+      margin-top: 2px;
+      font-style: italic;
+    }
+
+    .drinks-list {
       background-color: var(--card-bg);
-      border: 1px solid rgba(10, 66, 37, 0.2);
-      border-radius: 8px;
+      border-radius: 12px;
       padding: 12px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .drink-item {
-      padding: 8px 0;
-      border-bottom: 1px dashed rgba(10, 66, 37, 0.2);
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
       font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--header-green);
+      display: flex;
+      justify-content: space-between;
     }
 
     .drink-item:last-child {
@@ -127,10 +134,9 @@
 
     footer {
       text-align: center;
-      padding: 20px 0 10px 0;
+      padding: 24px 0;
       font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--header-green);
+      color: var(--text-sub);
     }
   </style>
 </head>
@@ -138,279 +144,304 @@
 
   <div class="container">
     <header>
-      <h1>İKİZLER RESTAURANT</h1>
-      <p>KONYA BEYŞEHİR | LEZZET GELENEĞİ</p>
+      <h1>İKİZLER <span>RESTAURANT</span></h1>
+      <p>Konya Beyşehir | Lezzet Geleneği</p>
     </header>
 
     <!-- LAHMACUN & PİDELER -->
-    <div class="category-title">LAHMACUN & PİDELER</div>
-    <div class="menu-grid">
+    <div class="category-title">🥖 PİDELER & LAHMACUN</div>
+    <div class="grid">
       <div class="item-card">
         <div class="item-info">
-          <span class="item-name-tr">LAHMACUN</span>
-          <span class="item-name-en">LAHMACUN</span>
+          <div class="item-title">LAHMACUN</div>
+          <div class="item-sub">Lahmacun</div>
         </div>
       </div>
       <div class="item-card">
         <div class="item-info">
-          <span class="item-name-tr">ETLİ EKMEK</span>
-          <span class="item-name-en">MEAT BREAD</span>
+          <div class="item-title">ETLİ EKMEK</div>
+          <div class="item-sub">Meat Bread</div>
         </div>
       </div>
       <div class="item-card">
         <div class="item-info">
-          <span class="item-name-tr">BIÇAK ARASI</span>
-          <span class="item-name-en">BETWEEN THE KNIVES</span>
+          <div class="item-title">BIÇAK ARASI</div>
+          <div class="item-sub">Between The Knives</div>
         </div>
       </div>
       <div class="item-card">
         <div class="item-info">
-          <span class="item-name-tr">MEVLANA</span>
-          <span class="item-name-en">MEVLANA</span>
+          <div class="item-title">MEVLANA</div>
+          <div class="item-sub">Mevlana</div>
         </div>
       </div>
       <div class="item-card">
         <div class="item-info">
-          <span class="item-name-tr">KAŞARLI PİDE</span>
-          <span class="item-name-en">PIDE WITH CHEESE</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- DANA ETLERİ -->
-    <div class="category-title">DANA ETLERİ</div>
-    <div class="menu-grid">
-      <div class="item-card">
-        <div class="item-info">
-          <span class="item-name-tr">DANA BİFTEK</span>
-          <span class="item-name-en">BEEF STEAK</span>
-        </div>
-      </div>
-      <div class="item-card">
-        <div class="item-info">
-          <span class="item-name-tr">DANA ANTRİKOT</span>
-          <span class="item-name-en">VEAL ANTRICOT</span>
-        </div>
-      </div>
-      <div class="item-card">
-        <div class="item-info">
-          <span class="item-name-tr">DANA BONFİLE</span>
-          <span class="item-name-en">BEEF TENDERLOIN</span>
-        </div>
-      </div>
-      <div class="item-card">
-        <div class="item-info">
-          <span class="item-name-tr">KARIŞIK IZGARA</span>
-          <span class="item-name-en">THE MIXED GRILL</span>
+          <div class="item-title">KAŞARLI PİDE</div>
+          <div class="item-sub">Pide With Cheese</div>
         </div>
       </div>
     </div>
 
-    <!-- KUZU ETLERİ -->
-    <div class="category-title">KUZU ETLERİ</div>
-    <div class="menu-grid">
+    <!-- BALIKLAR (YENİ EKLENDİ) -->
+    <div class="category-title">🐟 BALIKLAR</div>
+    <div class="grid">
       <div class="item-card">
+        <img src="https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?w=300&auto=format&fit=crop" class="item-img" alt="Çupra">
         <div class="item-info">
-          <span class="item-name-tr">KUZU ŞİŞ</span>
-          <span class="item-name-en">LAMB SKEWERS</span>
+          <div class="item-title">ÇUPRA</div>
+          <div class="item-sub">Sea Bream</div>
         </div>
       </div>
       <div class="item-card">
+        <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=300&auto=format&fit=crop" class="item-img" alt="Levrek">
         <div class="item-info">
-          <span class="item-name-tr">KUZU PİRZOLA</span>
-          <span class="item-name-en">LAMB CHOPS</span>
-        </div>
-      </div>
-      <div class="item-card">
-        <div class="item-info">
-          <span class="item-name-tr">KUZU KÜLBASTI</span>
-          <span class="item-name-en">LAMB KULBASTI</span>
-        </div>
-      </div>
-      <div class="item-card">
-        <div class="item-info">
-          <span class="item-name-tr">KUZU BEYTİ</span>
-          <span class="item-name-en">LAMB BEYTI</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- KEBAPLAR & KÖFTELER -->
-    <div class="category-title">KEBAPLAR & KÖFTELER</div>
-    <div class="menu-grid">
-      <div class="item-card">
-        <div class="item-info">
-          <span class="item-name-tr">ADANA KEBAP</span>
-          <span class="item-name-en">ADANA KEBAB</span>
-        </div>
-      </div>
-      <div class="item-card">
-        <div class="item-info">
-          <span class="item-name-tr">URFA KEBAP</span>
-          <span class="item-name-en">URFA KEBAB</span>
-        </div>
-      </div>
-      <div class="item-card">
-        <div class="item-info">
-          <span class="item-name-tr">BEYTİ SARMA</span>
-          <span class="item-name-en">WRAPPING THE COUPLE</span>
-        </div>
-      </div>
-      <div class="item-card">
-        <div class="item-info">
-          <span class="item-name-tr">KÖFTE</span>
-          <span class="item-name-en">KÖFTE</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- TAVUK IZGARALAR -->
-    <div class="category-title">TAVUK IZGARALAR</div>
-    <div class="menu-grid">
-      <div class="item-card">
-        <div class="item-info">
-          <span class="item-name-tr">TAVUK PİRZOLA</span>
-          <span class="item-name-en">CHICKEN CHOP</span>
-        </div>
-      </div>
-      <div class="item-card">
-        <div class="item-info">
-          <span class="item-name-tr">TAVUK ŞİŞ</span>
-          <span class="item-name-en">CHICKEN SHISH</span>
-        </div>
-      </div>
-      <div class="item-card">
-        <div class="item-info">
-          <span class="item-name-tr">TAVUK KELEBEK</span>
-          <span class="item-name-en">CHICKEN BUTTERFLY</span>
-        </div>
-      </div>
-      <div class="item-card">
-        <div class="item-info">
-          <span class="item-name-tr">TAVUK KANAT</span>
-          <span class="item-name-en">CHICKEN WING</span>
+          <div class="item-title">LEVREK</div>
+          <div class="item-sub">Sea Bass</div>
         </div>
       </div>
     </div>
 
     <!-- DÖNER ÇEŞİTLERİ -->
-    <div class="category-title">DÖNER ÇEŞİTLERİ</div>
-    <div class="menu-grid">
+    <div class="category-title">🥙 DÖNER ÇEŞİTLERİ</div>
+    <div class="grid">
       <div class="item-card">
         <div class="item-info">
-          <span class="item-name-tr">DÖNER KEBAP</span>
-          <span class="item-name-en">DÖNER KEBAB</span>
+          <div class="item-title">DÖNER KEBAP</div>
+          <div class="item-sub">Döner Kebab</div>
         </div>
       </div>
       <div class="item-card">
         <div class="item-info">
-          <span class="item-name-tr">İSKENDER KEBAP</span>
-          <span class="item-name-en">ISKENDER KEBAB</span>
+          <div class="item-title">İSKENDER KEBAP</div>
+          <div class="item-sub">Iskender Kebab</div>
         </div>
       </div>
       <div class="item-card">
         <div class="item-info">
-          <span class="item-name-tr">PİLAV ÜSTÜ DÖNER</span>
-          <span class="item-name-en">DÖNER OVER RICE</span>
+          <div class="item-title">PİLAV ÜSTÜ DÖNER</div>
+          <div class="item-sub">Döner Over Rice</div>
         </div>
       </div>
       <div class="item-card">
         <div class="item-info">
-          <span class="item-name-tr">DÖNER DÜRÜM</span>
-          <span class="item-name-en">DÖNER WRAP</span>
+          <div class="item-title">DÖNER DÜRÜM</div>
+          <div class="item-sub">Döner Wrap</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IZGARALAR & KEBAPLAR -->
+    <div class="category-title">🔥 IZGARALAR & KEBAPLAR</div>
+    <div class="grid">
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">ADANA KEBAP</div>
+          <div class="item-sub">Adana Kebab</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">URFA KEBAP</div>
+          <div class="item-sub">Urfa Kebab</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">BEYTİ SARMA</div>
+          <div class="item-sub">Wrapping The Couple</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">KÖFTE</div>
+          <div class="item-sub">Köfte</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">KARIŞIK IZGARA</div>
+          <div class="item-sub">The Mixed Grill</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DANA ETLERİ -->
+    <div class="category-title">🥩 DANA ETLERİ</div>
+    <div class="grid">
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">DANA BİFTEK</div>
+          <div class="item-sub">Beef Steak</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">DANA ANTRİKOT</div>
+          <div class="item-sub">Veal Antricot</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">DANA BONFİLE</div>
+          <div class="item-sub">Beef Tenderloin</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KUZU ETLERİ -->
+    <div class="category-title">🍖 KUZU ETLERİ</div>
+    <div class="grid">
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">KUZU ŞİŞ</div>
+          <div class="item-sub">Lamb Skewers</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">KUZU PİRZOLA</div>
+          <div class="item-sub">Lamb Chops</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">KUZU KÜLBASTI</div>
+          <div class="item-sub">Lamb Kulbasti</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">KUZU BEYTİ</div>
+          <div class="item-sub">Lamb Beyti</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAVUK IZGARALAR -->
+    <div class="category-title">🍗 TAVUK IZGARALAR</div>
+    <div class="grid">
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">TAVUK PİRZOLA</div>
+          <div class="item-sub">Chicken Chop</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">TAVUK ŞİŞ</div>
+          <div class="item-sub">Chicken Shish</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">TAVUK KELEBEK</div>
+          <div class="item-sub">Chicken Butterfly</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <div class="item-info">
+          <div class="item-title">TAVUK KANAT</div>
+          <div class="item-sub">Chicken Wing</div>
         </div>
       </div>
     </div>
 
     <!-- ÇORBALAR -->
-    <div class="category-title">ÇORBALAR</div>
-    <div class="menu-grid">
+    <div class="category-title">🥣 ÇORBALAR</div>
+    <div class="grid">
       <div class="item-card">
         <div class="item-info">
-          <span class="item-name-tr">MERCİMEK ÇORBASI</span>
-          <span class="item-name-en">LENTIL SOUP</span>
+          <div class="item-title">MERCİMEK ÇORBASI</div>
+          <div class="item-sub">Lentil Soup</div>
         </div>
       </div>
       <div class="item-card">
         <div class="item-info">
-          <span class="item-name-tr">KELLE PAÇA ÇORBASI</span>
-          <span class="item-name-en">HEAD TROTTER SOUP</span>
+          <div class="item-title">KELLE PAÇA ÇORBASI</div>
+          <div class="item-sub">Head Trotter Soup</div>
         </div>
       </div>
       <div class="item-card">
         <div class="item-info">
-          <span class="item-name-tr">EZOGELİN ÇORBASI</span>
-          <span class="item-name-en">EZOGELIN SOUP</span>
+          <div class="item-title">EZOGELİN ÇORBASI</div>
+          <div class="item-sub">Ezogelin Soup</div>
         </div>
       </div>
       <div class="item-card">
         <div class="item-info">
-          <span class="item-name-tr">İŞKEMBE ÇORBASI</span>
-          <span class="item-name-en">TRIPE SOUP</span>
+          <div class="item-title">İŞKEMBE ÇORBASI</div>
+          <div class="item-sub">Tripe Soup</div>
         </div>
       </div>
     </div>
 
-    <!-- TATLILAR -->
-    <div class="category-title">TATLILAR</div>
-    <div class="menu-grid">
+    <!-- TATLILAR (GÖNDERDİĞİN ÖZEL GÖRSELLER İLE) -->
+    <div class="category-title">🍮 TATLILAR</div>
+    <div class="grid">
       <div class="item-card">
+        <img src="https://i.ibb.co/L5T13Q7/sutlac.jpg" class="item-img" alt="Fırın Sütlaç">
         <div class="item-info">
-          <span class="item-name-tr">FIRIN SÜTLAÇ</span>
-          <span class="item-name-en">BAKERY MILK PUDDING</span>
+          <div class="item-title">FIRIN SÜTLAÇ</div>
+          <div class="item-sub">Bakery Milk Pudding</div>
         </div>
       </div>
       <div class="item-card">
+        <img src="https://i.ibb.co/hK7JqG8/kunefe.jpg" class="item-img" alt="Künefe">
         <div class="item-info">
-          <span class="item-name-tr">KÜNEFE</span>
-          <span class="item-name-en">KÜNEFE</span>
+          <div class="item-title">KÜNEFE</div>
+          <div class="item-sub">Künefe</div>
         </div>
       </div>
       <div class="item-card">
+        <img src="https://i.ibb.co/4TvxrWb/kazandibi.jpg" class="item-img" alt="Kazan Dibi">
         <div class="item-info">
-          <span class="item-name-tr">KAZAN DİBİ</span>
-          <span class="item-name-en">BOILER BOTTOM</span>
+          <div class="item-title">KAZAN DİBİ</div>
+          <div class="item-sub">Boiler Bottom</div>
         </div>
       </div>
       <div class="item-card">
+        <img src="https://i.ibb.co/BsnKgR2/katmer.jpg" class="item-img" alt="Katmer">
         <div class="item-info">
-          <span class="item-name-tr">KATMER</span>
-          <span class="item-name-en">KATMER</span>
+          <div class="item-title">KATMER</div>
+          <div class="item-sub">Katmer</div>
         </div>
       </div>
       <div class="item-card">
+        <img src="https://i.ibb.co/68H8K9N/burma-kadayif.jpg" class="item-img" alt="Burma Kadayıf">
         <div class="item-info">
-          <span class="item-name-tr">BURMA KADAYIF</span>
-          <span class="item-name-en">BURMA KADAYIF</span>
+          <div class="item-title">BURMA KADAYIF</div>
+          <div class="item-sub">Burma Kadayif</div>
         </div>
       </div>
       <div class="item-card">
+        <img src="https://i.ibb.co/xGL1pS8/ekmek-kadayifi.jpg" class="item-img" alt="Ekmek Kadayıfı">
         <div class="item-info">
-          <span class="item-name-tr">EKMEK KADAYIFI</span>
-          <span class="item-name-en">BREAD KADAYIF</span>
+          <div class="item-title">EKMEK KADAYIFI</div>
+          <div class="item-sub">Bread Kadayif</div>
         </div>
       </div>
     </div>
 
     <!-- İÇECEKLER -->
-    <div class="category-title">İÇECEKLER</div>
-    <div class="drink-list">
-      <div class="drink-item">AYRAN</div>
-      <div class="drink-item">KOLA ŞİŞE</div>
-      <div class="drink-item">KOLA TENEKE</div>
-      <div class="drink-item">FANTA ŞİŞE</div>
-      <div class="drink-item">FANTA TENEKE</div>
-      <div class="drink-item">ŞALGAM</div>
-      <div class="drink-item">GAZOZ</div>
-      <div class="drink-item">MEYVE SUYU ÇEŞİTLERİ</div>
-      <div class="drink-item">SODA ÇEŞİTLERİ</div>
-      <div class="drink-item">TÜRK KAHVESİ</div>
-      <div class="drink-item">ICE TEA</div>
-      <div class="drink-item">ÇAY İKRAM</div>
+    <div class="category-title">🥤 İÇECEKLER</div>
+    <div class="drinks-list">
+      <div class="drink-item"><span>AYRAN</span> <span>Ayran</span></div>
+      <div class="drink-item"><span>KOLA ŞİŞE</span> <span>Bottle Cola</span></div>
+      <div class="drink-item"><span>KOLA TENEKE</span> <span>Can Cola</span></div>
+      <div class="drink-item"><span>FANTA ŞİŞE</span> <span>Bottle Fanta</span></div>
+      <div class="drink-item"><span>FANTA TENEKE</span> <span>Can Fanta</span></div>
+      <div class="drink-item"><span>ŞALGAM</span> <span>Turnip Juice</span></div>
+      <div class="drink-item"><span>GAZOZ</span> <span>Soda</span></div>
+      <div class="drink-item"><span>MEYVE SUYU ÇEŞİTLERİ</span> <span>Fruit Juices</span></div>
+      <div class="drink-item"><span>SODA ÇEŞİTLERİ</span> <span>Mineral Water</span></div>
+      <div class="drink-item"><span>TÜRK KAHVESİ</span> <span>Turkish Coffee</span></div>
+      <div class="drink-item"><span>ICE TEA</span> <span>Ice Tea</span></div>
+      <div class="drink-item"><span>ÇAY İKRAM</span> <span>Complimentary Tea</span></div>
     </div>
 
     <footer>
-      Afiyet Olsun | İkizler Restaurant
+      <p>Afiyet Olsun | İkizler Restaurant</p>
     </footer>
   </div>
 
